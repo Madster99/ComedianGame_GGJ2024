@@ -8,18 +8,20 @@ public class ActionPattern_Controller : MonoBehaviour
 	public enum ActionType		{ LEFT, RIGHT, UP, DOWN };
 	public enum GenerateType	{ APPEND, REFRESH }
 
-	[SerializeField] int step_AMT, curr_Length ,max_Length;
+	[SerializeField] int step_AMT = 2, curr_Length = 0, max_Length = 12;
 	[SerializeField] Stack<ActionType> action_Pattern, input_Pattern;
-	[SerializeField] GenerateType patternGenType;
+	[SerializeField] GenerateType patternGenType = GenerateType.REFRESH;
     // Start is called before the first frame update
     void Start()
     {
 		action_Pattern = GeneratePattern();
+		ResetPlayerInput();
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		//possibly put this in another manager
 		if (Input.GetKeyDown(KeyCode.LeftArrow))
 		{
 			CheckInput(ActionType.LEFT);
@@ -40,11 +42,11 @@ public class ActionPattern_Controller : MonoBehaviour
 
 	//checks the input against the stack; if we pass we add it to the player's input
 	//if we fail we trigger a strike against the player
-	private void CheckInput(ActionType in_Action)
+	public bool CheckInput(ActionType in_Action)
 	{
+		bool successFind = false;
 		try
-		{
-			bool successFind = false;
+		{		
 			if (action_Pattern.TryPeek(out ActionType a))
 			{
 				if (in_Action == a)
@@ -57,9 +59,9 @@ public class ActionPattern_Controller : MonoBehaviour
 			if (!successFind)
 				throw new Exception();
 		}
-		catch (Exception e)
-		{
-			//failure!
+		catch (Exception e)		{
+			//failure, give the strike!
+			return successFind;
 		}
 		
 		//once we've drained the action stack, we create the new pattern, as an extension of the old pattern
@@ -77,11 +79,12 @@ public class ActionPattern_Controller : MonoBehaviour
 				default:
 					action_Pattern = GeneratePattern(newLength);
 					break;
-			}		
-			
-			//reset the input path for new level
-			input_Pattern = new Stack<ActionType>();
+			}
+
+			ResetPlayerInput();
 		}
+
+		return successFind; //this result will always be true due to the catch above
 	}
 
 	private Stack<ActionType> GeneratePattern(int length = 2, Stack<ActionType> inputList = null)
@@ -128,7 +131,13 @@ public class ActionPattern_Controller : MonoBehaviour
 			}
 		}
 
+		curr_Length = gen_Pattern.Count; //update the length we're at
 		return gen_Pattern;
 	}
 
+	void ResetPlayerInput()
+	{
+		//reset the input path for new level
+		input_Pattern = new Stack<ActionType>();
+	}
 }
