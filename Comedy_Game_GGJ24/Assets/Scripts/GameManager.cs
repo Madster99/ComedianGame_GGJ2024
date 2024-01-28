@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator Restart()
     {
-        GetActivePlayer().transform.parent = cane.gameObject.transform;
+        GetActivePlayer().transform.parent = cane.transform.GetChild(0);
         GetActivePlayer().transform.position = Vector3.zero;
         GetActivePlayer().DisablePlayer();
         yield return new WaitForSeconds(3.0f);
