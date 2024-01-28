@@ -4,22 +4,39 @@ using UnityEngine;
 
 public class CrowdAttackManager : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
+
+    private float timer;
+    private float attackTimer;
+    public Vector2 randomAttackRange;
+
     public enum AttackDir { LEFT, CENTER, RIGHT };
 
     [SerializeField] private GameObject launcher_L, launcher_C, launcher_R;
     [SerializeField] private GameObject crowdFX_L, crowdFX_C, crowdFX_R;
 
     private GameObject activeLauncher;
+
+    private void Start()
+    {
+        attackTimer = Random.Range(randomAttackRange.x, randomAttackRange.y);
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (gameManager.gameStateActive)
         {
-            StartAttack();
+            timer += Time.deltaTime;
+            if (timer > attackTimer)
+            {
+                StartAttack();
+            }
         }
     }
 
     public void StartAttack()
     {
+        timer = 0f;
         // generate attack direction
         AttackDir attackDirection = (AttackDir)Random.Range(0, 3);
         Debug.Log(attackDirection + " ATTACK INCOMING");
@@ -65,5 +82,6 @@ public class CrowdAttackManager : MonoBehaviour
         crowdFX_L.SetActive(false);
         crowdFX_C.SetActive(false);
         crowdFX_R.SetActive(false);
+        attackTimer = Random.Range(randomAttackRange.x, randomAttackRange.y);
     }
 }
