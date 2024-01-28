@@ -70,6 +70,8 @@ public class CrowdCell_Controller : MonoBehaviour
 		}
 	}
 
+	public List<Image> GetCrowdMembers() { return crowdMembers; }
+
 	void Crowd_Angry_Movement()
 	{
 
