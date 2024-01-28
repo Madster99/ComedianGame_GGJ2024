@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5359906207425773209
+--- !u!1 &1457716671791217776
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,57 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1126635059872182614}
+  - component: {fileID: 7889085593709016720}
+  - component: {fileID: 6708668659636992373}
+  m_Layer: 0
+  m_Name: Cane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7889085593709016720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457716671791217776}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 31.537138, y: 30.417965, z: 32.798172}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4846035744189375513}
+  m_Father: {fileID: 8588610651419320143}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &6708668659636992373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457716671791217776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092562e93bf90bc49922174c3454e7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caneAggro: -0.052500546
+  startMarker: {fileID: 7466958818695630549}
+  endMarker: {fileID: 5944382423295318838}
+  hookState: 0
+  hookEm: 0
+--- !u!1 &1818240384712723551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6259751504468690977}
   m_Layer: 0
   m_Name: Hook_Snap_Pos
   m_TagString: Untagged
@@ -16,13 +66,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1126635059872182614
+--- !u!4 &6259751504468690977
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5359906207425773209}
+  m_GameObject: {fileID: 1818240384712723551}
   serializedVersion: 2
   m_LocalRotation: {x: 0.021807605, y: -0.000000029802315, z: -0.000000029802315,
     w: 0.9997622}
@@ -30,9 +80,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4998777820542647346}
+  m_Father: {fileID: 4846035744189375513}
   m_LocalEulerAnglesHint: {x: 2.499, y: 0, z: 0}
---- !u!1 &5626378424063616648
+--- !u!1 &2698366043916562006
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,12 +90,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4998777820542647346}
-  - component: {fileID: 8282368634773615511}
-  - component: {fileID: 6130548279476504413}
-  - component: {fileID: 3850706194276415240}
-  - component: {fileID: 925738788858962965}
-  - component: {fileID: 5710112271492266020}
+  - component: {fileID: 4846035744189375513}
+  - component: {fileID: 5525846764452112967}
+  - component: {fileID: 2409728597371345791}
+  - component: {fileID: 7598959434717403363}
+  - component: {fileID: 7038220949608318784}
+  - component: {fileID: 3336578220233708828}
   m_Layer: 0
   m_Name: cane
   m_TagString: Untagged
@@ -53,37 +103,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4998777820542647346
+--- !u!4 &4846035744189375513
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5626378424063616648}
+  m_GameObject: {fileID: 2698366043916562006}
   serializedVersion: 2
   m_LocalRotation: {x: -0.52341324, y: -0.52341324, z: 0.47543517, w: 0.47543517}
   m_LocalPosition: {x: -8.82, y: -0.14, z: 0.18}
   m_LocalScale: {x: 68, y: 56.5, z: 56.5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1126635059872182614}
-  m_Father: {fileID: 7513211468811310814}
+  - {fileID: 6259751504468690977}
+  m_Father: {fileID: 7889085593709016720}
   m_LocalEulerAnglesHint: {x: 0, y: -95.5, z: 90}
---- !u!33 &8282368634773615511
+--- !u!33 &5525846764452112967
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5626378424063616648}
+  m_GameObject: {fileID: 2698366043916562006}
   m_Mesh: {fileID: 3907416530784518197, guid: 93d0c66d7be1a5e47a7f469e6174fa13, type: 3}
---- !u!23 &6130548279476504413
+--- !u!23 &2409728597371345791
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5626378424063616648}
+  m_GameObject: {fileID: 2698366043916562006}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -119,13 +169,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3850706194276415240
+--- !u!135 &7598959434717403363
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5626378424063616648}
+  m_GameObject: {fileID: 2698366043916562006}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -140,13 +190,13 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.012237851
   m_Center: {x: -0.00029813667, y: 0.011563194, z: 0.00047364188}
---- !u!65 &925738788858962965
+--- !u!65 &7038220949608318784
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5626378424063616648}
+  m_GameObject: {fileID: 2698366043916562006}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -161,13 +211,13 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.029879773, y: 0.024477268, z: 0.004061016}
   m_Center: {x: 0.008218256, y: 0.011047487, z: 0.010573448}
---- !u!65 &5710112271492266020
+--- !u!65 &3336578220233708828
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5626378424063616648}
+  m_GameObject: {fileID: 2698366043916562006}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -182,7 +232,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.028827533, y: 0.00336319, z: 0.026340984}
   m_Center: {x: 0.008679007, y: -0.0008740836, z: -0.0005666579}
---- !u!1 &8093831621889634548
+--- !u!1 &4340243000334851024
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,45 +240,91 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7513211468811310814}
-  - component: {fileID: 3093592819837141080}
+  - component: {fileID: 8588610651419320143}
   m_Layer: 0
-  m_Name: Cane
+  m_Name: Cane_Complete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7513211468811310814
+--- !u!4 &8588610651419320143
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8093831621889634548}
+  m_GameObject: {fileID: 4340243000334851024}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.010931, y: 3.3720827, z: 20.53}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -33.54807, y: -27.045883, z: -11.734243}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4998777820542647346}
+  - {fileID: 5944382423295318838}
+  - {fileID: 7466958818695630549}
+  - {fileID: 7889085593709016720}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!114 &3093592819837141080
-MonoBehaviour:
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7386681062522632970
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8093831621889634548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 092562e93bf90bc49922174c3454e7ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  caneAggro: 1.001
-  startMarker: {fileID: 0}
-  endMarker: {fileID: 0}
-  hookState: 0
-  hookEm: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7466958818695630549}
+  m_Layer: 0
+  m_Name: Cane_StartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7466958818695630549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7386681062522632970}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 31.537138, y: 30.417965, z: 32.264244}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8588610651419320143}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7928227668707816452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5944382423295318838}
+  m_Layer: 0
+  m_Name: Cane_Endpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5944382423295318838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7928227668707816452}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 31.537138, y: 30.417965, z: 22.094242}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8588610651419320143}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
