@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Crowd_Controller : MonoBehaviour
 {
@@ -59,4 +60,17 @@ public class Crowd_Controller : MonoBehaviour
 	//needs nulkl checks but whatever
 	public Sprite GetCrowdSprite_AtIndex(int index) { return crowdSprites[index]; }
 	public List<Sprite> GetCrowdSpriteList()		{ return crowdSprites; }
+
+	public List<Image> GetAllCrowdMembers()
+	{
+		List<Image> crowdMembers = new List<Image>();
+		foreach(Transform crowdParent in crowdParents)
+		{
+			if (crowdParent.TryGetComponent(out CrowdCell_Controller c))
+				foreach (Image img in c.GetCrowdMembers())
+					crowdMembers.Add(img);						
+		}
+
+		return crowdMembers;
+	}
 }
