@@ -37,7 +37,7 @@ public class Cane_Controller : MonoBehaviour
 		percentDistanceVector.y = 0;
 
 		float yRot = baseYRot;		
-		if (caneAggro > 0.7f && !attacking)
+		if (caneAggro > 0.75f && !attacking)
 			yRot += (caneAggro * hookingRot);
 		else if (attacking)
 		{
