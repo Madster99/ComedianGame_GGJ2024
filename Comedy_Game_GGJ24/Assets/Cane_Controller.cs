@@ -90,7 +90,7 @@ public class Cane_Controller : MonoBehaviour
 			case HookStateType.RETREATING:
 				if (caneAggro <= 0.0f)
 					hookState = HookStateType.WAITING;
-				caneAggro -= 0.0375f;
+				caneAggro -= 0.0325f;
 				break;
 		}
 
