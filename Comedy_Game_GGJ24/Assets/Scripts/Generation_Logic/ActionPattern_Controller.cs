@@ -16,7 +16,7 @@ public class ActionPattern_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		action_Pattern = GeneratePattern();
+		//action_Pattern = GeneratePattern();
 		ResetPlayerInput();
 	}
 
@@ -60,6 +60,9 @@ public class ActionPattern_Controller : MonoBehaviour
 	//if we fail we trigger a strike against the player
 	public bool CheckInput(ActionType in_Action)
 	{
+		if (activeHeckle == null)
+			return false;
+
 		bool successFind = false;
 		try
 		{		
