@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class CrowdCell_Controller : MonoBehaviour
 {
 	[SerializeField] List<Image>	crowdMembers;
-	public List<Sprite>				crowdSprites;
+	//public List<Sprite>				crowdSprites;
 	public int crowdMax;
 	[SerializeField] Image imagePrefab;
 
@@ -36,11 +36,14 @@ public class CrowdCell_Controller : MonoBehaviour
 		while(transform.childCount < crowdMax && crowdMembers.Count < crowdMax)
 		{		
 			Image img = Instantiate(imagePrefab, transform);
+			Crowd_Controller crowdCTRL = this.gameObject.transform.parent.GetComponent<Crowd_Controller>();
+			List<Sprite> crowdSprites = new List<Sprite>(crowdCTRL.GetCrowdSpriteList());
+
 			img.gameObject.transform.localPosition = new Vector3(transform.position.x, transform.position.y, Random.Range(-0.5f, 0.5f)); 
 
 			while (true && crowdSprites != null)
-			{
-				Sprite spr = crowdSprites[UnityEngine.Random.Range(0, crowdSprites.Count-1)];
+			{				
+				Sprite spr = crowdCTRL.GetCrowdSprite_AtIndex( UnityEngine.Random.Range(0, crowdSprites.Count-1));
 				bool found = false;
 				foreach (Image i in crowdMembers)
 				{
