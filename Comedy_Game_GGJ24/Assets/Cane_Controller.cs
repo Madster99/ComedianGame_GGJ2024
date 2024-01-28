@@ -1,24 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
+using System;
 
 public class Cane_Controller : MonoBehaviour
 {
-	[SerializeField, Range(0.0f, 1.1f)] float caneAggro;
+	public enum HookStateType { WAITING, REACHING, ATTACKING, RETREATING }
+
+	[SerializeField, Range(0.0f, 1.15f)] float caneAggro;
 	[SerializeField] Transform startMarker, endMarker;
 
 	Vector3 distanceVector;
 
-	float baseYRot = -90f, hookingRot = 7.1f;
+	float baseYRot = -90f, hookingRot = 7.2f, maxAggro = 1.15f;
 
-	[SerializeField] bool attacking = false;
+	[SerializeField] HookStateType hookState;	
 
-    // Start is called before the first frame update
-    void Start()
+	[InspectorButton("OnButtonClicked")]
+	[SerializeField, InspectorName("Hook 'Em!")] bool hookEm;
+
+	// Start is called before the first frame update
+	void Start()
     {
 		caneAggro = 0.0f;
-		//transform.eulerAngles = Vector3.zero;
-
+		hookState = HookStateType.WAITING;		
 		distanceVector = endMarker.position - startMarker.position;
     }
 
@@ -28,28 +34,73 @@ public class Cane_Controller : MonoBehaviour
 		if (distanceVector == null)
 			return;
 
-		if (caneAggro <= 0.60 && caneAggro < 1.0f)
-			attacking = false;
-		else if (caneAggro >= 1.0f)
-			attacking = true;
+		HookStateMachine();
+	}
+
+	private void OnButtonClicked()
+	{
+		Debug.Log("Clicked The Auto-Hook Button!");
+		ReleaseTheHook();
+	}
+
+	public async void ReleaseTheHook()
+	{
+		while (caneAggro <= 1.0f && hookState < HookStateType.ATTACKING)
+		{
+			switch(hookState)
+			{
+				case HookStateType.WAITING:
+					caneAggro += 0.005f;
+					break;
+				case HookStateType.REACHING:
+					caneAggro += 0.0025f;
+					//await Task.Delay(TimeSpan.FromSeconds(0.1f));
+					break;
+			}
+			await Task.Yield();			
+		}
+	}
+
+	void HookStateMachine()
+	{
 
 		Vector3 percentDistanceVector = caneAggro * distanceVector;
 		percentDistanceVector.y = 0;
+		float yRot = baseYRot, rotSpeed = 4f;
 
-		float yRot = baseYRot;		
-		if (caneAggro > 0.75f && !attacking)
-			yRot += (caneAggro * hookingRot);
-		else if (attacking)
+		switch(hookState)
 		{
-			attacking = true;
-			yRot -= ((caneAggro) * hookingRot*1.1f);
-		}			
+			case HookStateType.WAITING:
+				if (caneAggro > 0.85f)
+					hookState = HookStateType.REACHING;				
+				break;
+			case HookStateType.REACHING:
+				if (caneAggro > 1.0f)
+					hookState = HookStateType.ATTACKING;
+				yRot += (caneAggro * hookingRot);
+				break;
+			case HookStateType.ATTACKING:
+				if (caneAggro >= maxAggro)
+					hookState = HookStateType.RETREATING;
+				else
+					caneAggro += 0.003f;
+				rotSpeed = 2.5f;
+				yRot -= ((caneAggro) * hookingRot * 1.05f);
+				break;
+			case HookStateType.RETREATING:
+				if (caneAggro <= 0.0f)
+					hookState = HookStateType.WAITING;
+				caneAggro -= 0.0375f;
+				break;
+		}
+
+
 
 		Quaternion rotation = Quaternion.Euler(0, yRot, 0);
-		transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 5 * Time.deltaTime);
+		transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotSpeed * Time.deltaTime);
 
 
 		Vector3 newPos = startMarker.position + percentDistanceVector;
-		transform.position = Vector3.Slerp(transform.position, newPos, 7*Time.deltaTime);
-    }
+		transform.position = Vector3.Slerp(transform.position, newPos, 7 * Time.deltaTime);
+	}
 }
