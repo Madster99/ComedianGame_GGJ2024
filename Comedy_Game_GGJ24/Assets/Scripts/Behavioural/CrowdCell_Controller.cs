@@ -15,7 +15,9 @@ public class CrowdCell_Controller : MonoBehaviour
 	//// Start is called before the first frame update
 	void Start()
 	{
-
+		crowdMembers = new List<Image>();
+		foreach (Transform child in gameObject.transform)
+			Destroy(child.gameObject);
 	}	
 	#endregion
 

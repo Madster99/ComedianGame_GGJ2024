@@ -17,9 +17,11 @@ public class Crowd_Controller : MonoBehaviour
     void Start()
     {
 		currCrowdStage = 1;
-		foreach (Transform child in transform)
-			if (child.TryGetComponent(out CrowdCell_Controller c))
-				c.crowdSprites = new List<Sprite>(crowdSprites);
+		foreach (Transform child in crowdParents)
+		{
+			if (child.TryGetComponent(out CrowdCell_Controller c))			
+				c.crowdSprites = new List<Sprite>(crowdSprites);			
+		}			
 		GenerateCrowd();
     }
 
@@ -48,9 +50,9 @@ public class Crowd_Controller : MonoBehaviour
 			if (t.TryGetComponent(out CrowdCell_Controller c))
 			{
 				int crowdCap = Random.Range(min, max + 1);
+				crowdCap = System.Math.Clamp(crowdCap, crowdCap, crowdMax);
 				c.UpdateCrowd(crowdCap);
-			}
-				
+			}				
 		}
     }
 }
