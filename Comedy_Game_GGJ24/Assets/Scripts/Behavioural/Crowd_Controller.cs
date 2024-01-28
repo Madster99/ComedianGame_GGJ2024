@@ -17,11 +17,11 @@ public class Crowd_Controller : MonoBehaviour
     void Start()
     {
 		currCrowdStage = 1;
-		foreach (Transform child in crowdParents)
-		{
-			if (child.TryGetComponent(out CrowdCell_Controller c))			
-				c.crowdSprites = new List<Sprite>(crowdSprites);			
-		}			
+		//foreach (Transform child in crowdParents)
+		//{
+		//	if (child.TryGetComponent(out CrowdCell_Controller c))			
+		//		c.crowdSprites = new List<Sprite>(crowdSprites);			
+		//}			
 		GenerateCrowd();
     }
 
@@ -55,4 +55,8 @@ public class Crowd_Controller : MonoBehaviour
 			}				
 		}
     }
+
+	//needs nulkl checks but whatever
+	public Sprite GetCrowdSprite_AtIndex(int index) { return crowdSprites[index]; }
+	public List<Sprite> GetCrowdSpriteList()		{ return crowdSprites; }
 }
