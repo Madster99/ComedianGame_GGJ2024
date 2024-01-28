@@ -8,7 +8,7 @@ public class Cane_Controller : MonoBehaviour
 {
 	public enum HookStateType { WAITING, REACHING, ATTACKING, RETREATING }
 
-	[SerializeField, Range(0.0f, 1.15f)] float caneAggro;
+	[SerializeField, Range(0.0f, 1.15f)] public float caneAggro;
 	[SerializeField] Transform startMarker, endMarker;
 
 	Vector3 distanceVector;

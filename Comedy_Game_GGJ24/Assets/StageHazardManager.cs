@@ -6,13 +6,15 @@ using DG.Tweening;
 public class StageHazardManager : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
+    public HazardDir hazardDirection;
 
     private float timer;
     private float attackTimer;
     public Vector2 randomAttackRange;
-
+    
     [SerializeField] private GameObject[] hazardPrefab;
     public enum HazardDir { LEFT, CENTER, RIGHT };
+    private string hazardDir_String;
 
     [SerializeField] private Transform hazard_L_spawn, hazard_L_telegraph, hazard_L_end;
     [SerializeField] private Transform hazard_C_spawn, hazard_C_telegraph, hazard_C_end;
@@ -44,7 +46,8 @@ public class StageHazardManager : MonoBehaviour
     {
         timer = 0f;
         // generate hazard direction
-        HazardDir hazardDirection = (HazardDir)Random.Range(0, 3);
+        hazardDirection = (HazardDir)Random.Range(0, 3);
+        hazardDir_String = hazardDirection.ToString();
         Debug.Log(hazardDirection + " HAZARD INCOMING");
         switch (hazardDirection)
         {
@@ -66,11 +69,21 @@ public class StageHazardManager : MonoBehaviour
         currentHazard.transform.DOMove(telegraph.transform.position, timer_toTelegraph);
         yield return new WaitForSeconds(timer_AttackDelay);
         currentHazard.transform.DOMove(end.transform.position, timer_toEnd);
+        TryDamagingPlayer(0.4f);
         yield return new WaitForSeconds(1.5f);
         currentHazard.transform.DOMove(spawn.transform.position, timer_toSpawn);
         yield return new WaitForSeconds(timer_toSpawn);
         Destroy(currentHazard);
         attackTimer = Random.Range(randomAttackRange.x, randomAttackRange.y);
         yield return null;
+    }
+
+    public void TryDamagingPlayer(float damage)
+    {
+        if (gameManager.GetActivePlayer().currentSection.ToString() == hazardDir_String)
+        {
+            gameManager.endStateMeter += damage;
+            gameManager.UpdateCane();
+        }
     }
 }

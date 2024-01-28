@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Zone_L
+  - Zone_C
+  - Zone_R
   layers:
   - Default
   - TransparentFX

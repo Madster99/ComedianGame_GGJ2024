@@ -11,6 +11,8 @@ public class CrowdAttackManager : MonoBehaviour
     public Vector2 randomAttackRange;
 
     public enum AttackDir { LEFT, CENTER, RIGHT };
+    AttackDir attackDirection;
+    private string attackDir_String;
 
     [SerializeField] private GameObject launcher_L, launcher_C, launcher_R;
     [SerializeField] private GameObject crowdFX_L, crowdFX_C, crowdFX_R;
@@ -38,7 +40,8 @@ public class CrowdAttackManager : MonoBehaviour
     {
         timer = 0f;
         // generate attack direction
-        AttackDir attackDirection = (AttackDir)Random.Range(0, 3);
+        attackDirection = (AttackDir)Random.Range(0, 3);
+        attackDir_String = attackDirection.ToString();
         Debug.Log(attackDirection + " ATTACK INCOMING");
         switch (attackDirection)
         {
@@ -82,6 +85,18 @@ public class CrowdAttackManager : MonoBehaviour
         crowdFX_L.SetActive(false);
         crowdFX_C.SetActive(false);
         crowdFX_R.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        TryDamagingPlayer(0.4f);
         attackTimer = Random.Range(randomAttackRange.x, randomAttackRange.y);
     }
+
+    public void TryDamagingPlayer(float damage)
+    {
+        if (gameManager.GetActivePlayer().currentSection.ToString() == attackDir_String)
+        {
+            gameManager.endStateMeter += damage;
+            gameManager.UpdateCane();
+        }
+    }
+
 }
