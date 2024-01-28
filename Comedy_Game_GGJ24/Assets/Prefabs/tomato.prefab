@@ -90,6 +90,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3620773146155086750}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fbe0c9fd5bb437e4db89ee492b0c8246,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9089614847347268533}
   m_SourcePrefab: {fileID: 100100000, guid: fbe0c9fd5bb437e4db89ee492b0c8246, type: 3}
 --- !u!1 &4237895008957258563 stripped
 GameObject:
@@ -113,7 +117,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 320
@@ -145,3 +149,17 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.003445672
   m_Center: {x: 0.00004926324, y: -0.000005998182, z: 0.0005657552}
+--- !u!114 &9089614847347268533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4237895008957258563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 115bebb8b5413964394f8f14371565bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burstFX: {fileID: 8583459519575083957, guid: 65b783c92a5cbfb47b4188355e85ac20, type: 3}
+  deleteOnImpact: 1
